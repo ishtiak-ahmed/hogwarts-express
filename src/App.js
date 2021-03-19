@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
-import Search from './Components/Search/Search';
+import Destination from './Components/Destination/Destination';
 import NoMatch from './Components/NoMatch/NoMatch';
 import Header from './Components/Header/Header';
 
@@ -22,8 +22,8 @@ function App() {
         <Route path='/login'>
           <Login></Login>
         </Route>
-        <Route path="/search">
-          <Search></Search>
+        <Route path="/destination">
+          <Destination></Destination>
         </Route>
         <Route path='*'>
           <NoMatch></NoMatch>
