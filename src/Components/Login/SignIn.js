@@ -1,33 +1,64 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import firebase from "firebase/app";
+import "firebase/auth";
+import { UserContext } from '../../App';
+import { loginContext } from './Login';
+
 
 const SignIn = () => {
-
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     const style = {
         cursor: "Pointer",
         color: 'orangered',
     }
-    const [signInPage, setSignInPage] = useState(true)
+    const [isSignIn, setSignIn] = useContext(loginContext)
 
-    const handleInput = () => {
-        console.log('handling input')
+    const [formData, setFormData] = useState({})
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(formData)
+        const isEmailValid = /\S+@\S+\.\S+/.test(formData.email)
+        const isPassValid = formData.password.length > 5
+        if (isEmailValid && isPassValid) {
+            console.log('signing up with valid data')
+            signInWithEmail()
+        }
     }
-
+    const handleInput = (e) => {
+        const newFormData = { ...formData }
+        newFormData[e.target.name] = e.target.value
+        setFormData(newFormData)
+    }
+    const signInWithEmail = () => {
+        firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
+            .then((res) => {
+                const { displayName, email } = res.user
+                const newUser = { displayName, email }
+                console.log(displayName, email)
+                setLoggedInUser(newUser)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
+            });
+    }
 
     return (
         <div>
             <h2>Login</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form-floating">
-                    <input type="email" onChange={handleInput} className='form-control' name='email' />
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email :</label>
+                    <input required type="email" onChange={handleInput} className='form-control' name='email' />
                 </div>
                 <div className="form-floating">
-                    <input type="password" onChange={handleInput} className='form-control' name='password' />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password :</label>
+                    <input type="password" required onChange={handleInput} className='form-control' name='password' />
                 </div>
                 <button>Login</button>
             </form>
-            <h2>Don't have an account? <span style={style} onClick={() => setSignInPage(!signInPage)}>Register</span></h2>
+            <h2>Don't have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Register</span></h2>
         </div>
     );
 };

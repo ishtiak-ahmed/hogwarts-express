@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import firebase from "firebase/app";
-
 import "firebase/auth";
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
+export const loginContext = createContext()
 
 const Login = () => {
+    const [IsSignIn, setSignIn] = useState(true)
     const history = useHistory()
     const location = useLocation()
     const { from } = location.state || { from: { pathname: "/" } };
@@ -35,6 +38,11 @@ const Login = () => {
     }
     return (
         <div>
+            <loginContext.Provider value={[IsSignIn, setSignIn]}>
+                {
+                    IsSignIn ? <SignIn></SignIn> : <SignUp></SignUp>
+                }
+            </loginContext.Provider>
             <button onClick={handleGoogleLogin}>Login with Google</button>
         </div>
     );
