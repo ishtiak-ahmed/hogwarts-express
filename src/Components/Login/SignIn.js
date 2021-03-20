@@ -16,13 +16,7 @@ const SignIn = () => {
     const [formData, setFormData] = useState({})
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(formData)
-        const isEmailValid = /\S+@\S+\.\S+/.test(formData.email)
-        const isPassValid = formData.password.length > 5
-        if (isEmailValid && isPassValid) {
-            console.log('signing up with valid data')
-            signInWithEmail()
-        }
+        signInWithEmail()
     }
     const handleInput = (e) => {
         const newFormData = { ...formData }

@@ -1,14 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { loginContext } from './Login';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const SignUp = () => {
     const [isSignIn, setSignIn] = useContext(loginContext)
 
+    // Span Text Style
     const style = {
         cursor: "Pointer",
         color: 'orangered',
     }
 
+    // Read Formdata
     const [formData, setFormData] = useState({})
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,13 +21,30 @@ const SignUp = () => {
         // const isPassMatch = formData.password === formData.passwordSecond
         const isPassValid = formData.password.length > 5
         if (isEmailValid && isPassValid) {
-            console.log('signing up with valid data')
+            console.log('creating account')
+            createAccount()
         }
     }
+
+    // Handle Form Input
     const handleInput = (e) => {
         const newFormData = { ...formData }
         newFormData[e.target.name] = e.target.value
         setFormData(newFormData)
+    }
+
+    // Create New User
+    const createAccount = () => {
+        firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert('Account created succesfully', user.email)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
+            });
     }
     return (
         <div>

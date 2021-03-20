@@ -27,7 +27,9 @@ const Login = () => {
                 const signedInUser = { displayName, email }
                 console.log(signedInUser)
                 setLoggedInUser(signedInUser)
-                history.replace(from)
+                history.replace('from')
+            }).then(() => {
+                console.log('login succesful. ', history)
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
