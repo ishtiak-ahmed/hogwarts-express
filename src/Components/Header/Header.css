@@ -6,4 +6,16 @@ header {
   margin: auto;
   display: flex;
   justify-content: space-between;
+  background-color: #fffff3;
+  align-items: center;
+  padding: 20px;
+}
+nav {
+  display: flex;
+  gap: 20px;
+}
+nav a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
 }

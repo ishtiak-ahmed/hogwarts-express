@@ -27,7 +27,8 @@ const Login = () => {
                 const signedInUser = { displayName, email }
                 console.log(signedInUser)
                 setLoggedInUser(signedInUser)
-                history.replace('from')
+                console.log(from)
+                history.replace(from)
             }).then(() => {
                 console.log('login succesful. ', history)
             }).catch((error) => {
@@ -40,7 +41,7 @@ const Login = () => {
     }
     return (
         <div>
-            <loginContext.Provider value={[IsSignIn, setSignIn]}>
+            <loginContext.Provider value={[IsSignIn, setSignIn, from]}>
                 {
                     IsSignIn ? <SignIn></SignIn> : <SignUp></SignUp>
                 }

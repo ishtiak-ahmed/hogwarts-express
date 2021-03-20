@@ -3,10 +3,12 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { UserContext } from '../../App';
 import { loginContext } from './Login';
+import { useHistory } from 'react-router';
 
 
 const SignIn = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser, setLoggedInUser, from] = useContext(UserContext)
+    const history = useHistory()
     const style = {
         cursor: "Pointer",
         color: 'orangered',
@@ -30,6 +32,7 @@ const SignIn = () => {
                 const newUser = { displayName, email }
                 console.log(displayName, email)
                 setLoggedInUser(newUser)
+                history.push(from)
             })
             .catch((error) => {
                 const errorCode = error.code;
