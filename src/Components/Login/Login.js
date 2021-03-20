@@ -3,10 +3,146 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
 
 export const loginContext = createContext()
+
+// Email Sign In Function
+const SignIn = (props) => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+
+    const from = props.location;
+    const history = useHistory()
+    const style = {
+        cursor: "Pointer",
+        color: 'orangered',
+    }
+    const [isSignIn, setSignIn] = useContext(loginContext)
+
+    const [formData, setFormData] = useState({})
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        signInWithEmail()
+    }
+    const handleInput = (e) => {
+        const newFormData = { ...formData }
+        newFormData[e.target.name] = e.target.value
+        setFormData(newFormData)
+    }
+    const signInWithEmail = () => {
+        firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
+            .then((res) => {
+                const { displayName, email } = res.user
+                const newUser = { displayName, email }
+                console.log(displayName, email)
+                setLoggedInUser(newUser)
+                history.push(from)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
+            });
+    }
+
+    return (
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="form-floating">
+                    <label htmlFor="email">Email :</label>
+                    <input required type="email" onChange={handleInput} className='form-control' name='email' />
+                </div>
+                <div className="form-floating">
+                    <label htmlFor="password">Password :</label>
+                    <input type="password" required onChange={handleInput} className='form-control' name='password' />
+                </div>
+                <button>Login</button>
+            </form>
+            <h2>Don't have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Register</span></h2>
+        </div>
+    );
+};
+
+
+// Email sign Up Function
+
+const SignUp = (props) => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+
+    const from = props.location;
+    const history = useHistory()
+
+    const [isSignIn, setSignIn] = useContext(loginContext)
+
+    // Span Text Style
+    const style = {
+        cursor: "Pointer",
+        color: 'orangered',
+    }
+
+    // Read Formdata
+    const [formData, setFormData] = useState({})
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(formData)
+        const isEmailValid = /\S+@\S+\.\S+/.test(formData.email)
+        // const isPassMatch = formData.password === formData.passwordSecond
+        const isPassValid = formData.password.length > 5
+        if (isEmailValid && isPassValid) {
+            createAccount()
+        }
+    }
+
+    // Handle Form Input
+    const handleInput = (e) => {
+        const newFormData = { ...formData }
+        newFormData[e.target.name] = e.target.value
+        setFormData(newFormData)
+    }
+
+    // Create New User
+    const createAccount = () => {
+        console.log('creating account')
+        firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                const signUpUser = {
+                    displayName: user.name,
+                    email: user.email
+                }
+                setLoggedInUser(signUpUser)
+                history.push(from)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
+            });
+    }
+    return (
+        <div>
+            <h2>Create an account</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="name">Name</label>
+                    <input onChange={handleInput} required type="text" name='name' />
+                </div>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input onChange={handleInput} type="email" required name='email' />
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input onChange={handleInput} name='password' required type="password" />
+                </div>
+                <button onClick={handleSubmit}>Sign Up</button>
+            </form>
+            <h2>Already have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Login</span></h2>
+
+        </div>
+    );
+};
+
 
 const Login = () => {
     const [IsSignIn, setSignIn] = useState(true)
@@ -43,7 +179,7 @@ const Login = () => {
         <div>
             <loginContext.Provider value={[IsSignIn, setSignIn, from]}>
                 {
-                    IsSignIn ? <SignIn></SignIn> : <SignUp></SignUp>
+                    IsSignIn ? <SignIn location={from}></SignIn> : <SignUp location={from}></SignUp>
                 }
             </loginContext.Provider>
             <button onClick={handleGoogleLogin}>Login with Google</button>
