@@ -11,6 +11,12 @@ const Destination = () => {
                 <input type="text" name="end" />
                 <br />
                 <button>Search</button>
+                <div className="result">
+                    <p>One Time Ticket</p>
+                    <p>One Day Pass</p>
+                    <p>Monthly Pass</p>
+                    <p>Annual Pass</p>
+                </div>
             </div>
             <div className="map">
                 <h2>This is map</h2>

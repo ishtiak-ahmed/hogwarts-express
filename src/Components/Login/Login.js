@@ -56,9 +56,9 @@ const SignIn = (props) => {
                     <label htmlFor="password">Password :</label>
                     <input type="password" required onChange={handleInput} className='form-control' name='password' />
                 </div>
-                <button>Login</button>
+                <button className='loginbtn' onClick={handleSubmit}>Login</button>
             </form>
-            <h2>Don't have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Register</span></h2>
+            <h3>Don't have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Register</span></h3>
         </div>
     );
 };
@@ -124,21 +124,20 @@ const SignUp = (props) => {
             <h2>Create an account</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Name</label> <br />
                     <input onChange={handleInput} required type="text" name='name' />
                 </div>
                 <div>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email</label> <br />
                     <input onChange={handleInput} type="email" required name='email' />
                 </div>
                 <div>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password</label> <br />
                     <input onChange={handleInput} name='password' required type="password" />
                 </div>
-                <button onClick={handleSubmit}>Sign Up</button>
+                <button className='loginbtn' onClick={handleSubmit}>Sign Up</button>
             </form>
-            <h2>Already have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Login</span></h2>
-
+            <h3>Already have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Login</span></h3>
         </div>
     );
 };
@@ -176,13 +175,15 @@ const Login = () => {
             });
     }
     return (
-        <div>
-            <loginContext.Provider value={[IsSignIn, setSignIn, from]}>
-                {
-                    IsSignIn ? <SignIn location={from}></SignIn> : <SignUp location={from}></SignUp>
-                }
-            </loginContext.Provider>
-            <button onClick={handleGoogleLogin}>Login with Google</button>
+        <div className="login-page">
+            <div className='login-box'>
+                <loginContext.Provider value={[IsSignIn, setSignIn, from]}>
+                    {
+                        IsSignIn ? <SignIn location={from}></SignIn> : <SignUp location={from}></SignUp>
+                    }
+                </loginContext.Provider>
+            </div>
+            <button className='googlebtn' onClick={handleGoogleLogin}>Login with Google</button>
         </div>
     );
 };

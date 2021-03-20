@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: slategray;
+  background-color: #566779;
 }
 
 /* Home Page */
@@ -17,10 +17,14 @@ body {
   padding: 5px 10px;
   border-radius: 10px;
 }
-main {
+main,
+section,
+.login-page {
   max-width: 1200px;
   padding: 30px;
   margin: auto;
+}
+main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-around;
@@ -29,11 +33,11 @@ main {
   height: 80vh;
 }
 .ticket-item {
-  border: 2px solid white;
   width: 100%;
   padding: 15px;
   border-radius: 5px;
   text-align: center;
+  background-color: #a4b6c7;
 }
 
 /* Header Style */
@@ -48,6 +52,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
+  border-bottom: 1px solid #e9e8e8;
 }
 nav {
   display: flex;
@@ -57,13 +62,11 @@ nav a {
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 500;
+  color: #fff;
 }
 
 /* Destination */
 section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px;
   display: grid;
   grid-template-columns: 1.2fr 3fr;
   grid-gap: 20px;
@@ -71,12 +74,12 @@ section {
 .search-area {
   padding: 20px;
   border-radius: 10px;
-  background-color: lightgray;
+  background-color: #7e90a1;
 }
 section input,
 section button {
   padding: 10px 10px;
-  margin: 10px 0;
+  margin-bottom: 10px;
   width: 100%;
   border-radius: 5px;
   border: none;
@@ -84,4 +87,49 @@ section button {
 section button {
   background-color: orangered;
   color: #fff;
+}
+
+.map {
+  border-radius: 20px;
+  min-height: 450px;
+  background-color: #7e90a1;
+}
+
+/* Login Page */
+.login-page {
+  text-align: center;
+}
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+.login-box {
+  padding: 20px;
+  max-width: 400px;
+  border-radius: 20px;
+  margin: auto;
+  border: 1px solid #fff;
+  text-align: left;
+}
+.googlebtn {
+  font-size: 1.1rem;
+  width: 350px;
+  padding: 10px;
+  margin: 30px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #06486e;
+  border: none;
+}
+.loginbtn {
+  width: 100%;
+  padding: 10px;
+  background-color: orangered;
+  color: #fff;
+  border: none;
+  margin-top: 10px;
+  border-radius: 5px;
 }
