@@ -12,6 +12,7 @@ import Header from './Components/Header/Header';
 import firebase from "firebase/app";
 import firebaseConfig from './Components/Config/firebaseConfig'
 import { createContext, useState } from 'react';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 
 export const UserContext = createContext()
@@ -33,9 +34,9 @@ function App() {
           <Route path='/login'>
             <Login></Login>
           </Route>
-          <Route path="/destination">
+          <PrivateRoute path="/destination">
             <Destination></Destination>
-          </Route>
+          </PrivateRoute>
           <Route path='*'>
             <NoMatch></NoMatch>
           </Route>
