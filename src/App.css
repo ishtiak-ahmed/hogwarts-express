@@ -1,38 +1,87 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: slategray;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Home Page */
+.buy-btn {
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: goldenrod;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+main {
+  max-width: 1200px;
+  padding: 30px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-around;
+  grid-gap: 30px;
+  place-items: center;
+  height: 80vh;
+}
+.ticket-item {
+  border: 2px solid white;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Header Style */
+
+.logo img {
+  height: 70px;
+}
+header {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 10px 30px;
+}
+nav {
+  display: flex;
+  gap: 20px;
+}
+nav a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
-.App-link {
-  color: #61dafb;
+/* Destination */
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1.2fr 3fr;
+  grid-gap: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-area {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: lightgray;
+}
+section input,
+section button {
+  padding: 10px 10px;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+}
+section button {
+  background-color: orangered;
+  color: #fff;
 }

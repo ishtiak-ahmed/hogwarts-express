@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logoWhite from '../../images/logo-white.png'
 import logo from '../../images/logo.png'
 import { Link } from 'react-router-dom'
-import './Header.css'
+import { UserContext } from '../../App';
 
 const Header = () => {
+    const [loggedInUser] = useContext(UserContext)
     return (
         <header>
-            <div className="logo">
-                <img src={logo} alt="" />
-            </div>
+            <Link to='/'>
+
+                <div className="logo">
+                    <img src={logo} alt="" />
+                </div>
+            </Link>
             <nav className='nav-links'>
                 <Link to='/'>Home</Link>
                 <Link to='/destination'>Destination</Link>
                 <Link to='/blog'>Blog</Link>
-                <Link to='/login'>Login</Link>
+                {
+                    loggedInUser.displayName ? <Link>{loggedInUser.displayName}</Link> :
+                        <Link to='/login'>Login</Link>
+                }
             </nav>
         </header>
     );

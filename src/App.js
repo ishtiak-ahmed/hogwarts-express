@@ -36,6 +36,9 @@ function App() {
           <PrivateRoute path="/destination">
             <Destination></Destination>
           </PrivateRoute>
+          <Route path='/blog'>
+            <h2>This is blog page.</h2>
+          </Route>
           <Route path='*'>
             <NoMatch></NoMatch>
           </Route>
