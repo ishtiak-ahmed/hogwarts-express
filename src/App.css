@@ -30,7 +30,7 @@ main {
   justify-content: space-around;
   grid-gap: 30px;
   place-items: center;
-  height: 80vh;
+  height: 70vh;
 }
 .ticket-item {
   width: 100%;
