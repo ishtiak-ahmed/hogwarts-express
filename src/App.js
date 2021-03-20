@@ -43,6 +43,7 @@ function App() {
             <NoMatch></NoMatch>
           </Route>
         </Switch>
+        <p style={{ textAlign: 'center', color: 'white' }}>Developed by <a style={{ color: '#fffff3' }} href="https://github.com/ishtiak-ahmed">Ishtiak Ahmed</a></p>
       </Router>
     </UserContext.Provider>
   );

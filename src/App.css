@@ -155,5 +155,6 @@ section button {
   }
   .googlebtn {
     width: 90%;
+    margin: auto;
   }
 }
