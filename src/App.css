@@ -133,3 +133,21 @@ section button {
   margin-top: 10px;
   border-radius: 5px;
 }
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  section {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  section {
+    grid-template-columns: 1fr;
+  }
+}
