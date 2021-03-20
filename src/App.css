@@ -89,6 +89,9 @@ section button {
   color: #fff;
 }
 
+.result p {
+  color: #fff;
+}
 .map {
   border-radius: 20px;
   min-height: 450px;

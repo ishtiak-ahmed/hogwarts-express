@@ -1,4 +1,5 @@
 import React from 'react';
+import Map from '../Map/Map';
 
 const Destination = () => {
     return (
@@ -19,7 +20,7 @@ const Destination = () => {
                 </div>
             </div>
             <div className="map">
-                <h2>This is map</h2>
+                <Map></Map>
             </div>
         </section>
     );
