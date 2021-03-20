@@ -153,4 +153,7 @@ section button {
   section {
     grid-template-columns: 1fr;
   }
+  .googlebtn {
+    width: 90%;
+  }
 }
