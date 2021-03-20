@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { loginContext } from './Login';
 
 const SignUp = () => {
+    const [isSignIn, setSignIn] = useContext(loginContext)
+
+    const style = {
+        cursor: "Pointer",
+        color: 'orangered',
+    }
+
     const [formData, setFormData] = useState({})
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -35,6 +43,8 @@ const SignUp = () => {
                 </div>
                 <button onClick={handleSubmit}>Sign Up</button>
             </form>
+            <h2>Already have an account? <span style={style} onClick={() => setSignIn(!isSignIn)}>Login</span></h2>
+
         </div>
     );
 };
