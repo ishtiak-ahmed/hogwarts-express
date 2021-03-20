@@ -144,6 +144,9 @@ section button {
   }
 }
 @media (max-width: 768px) {
+  header {
+    display: block;
+  }
   main {
     grid-template-columns: repeat(1, 1fr);
   }
