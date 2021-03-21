@@ -105,6 +105,7 @@ const SignUp = (props) => {
         console.log('creating account')
         firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
             .then((userCredential) => {
+                updateUserName(formData.name)
                 const user = userCredential.user;
                 const signUpUser = {
                     displayName: user.name,
@@ -118,6 +119,15 @@ const SignUp = (props) => {
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
             });
+    }
+    const updateUserName = name => {
+        const user = firebase.auth().currentUser
+        user.updateProfile({
+            displayName: name
+        })
+            .then(() => {
+                setLoggedInUser(user)
+            })
     }
     return (
         <div>

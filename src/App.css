@@ -97,6 +97,9 @@ section h3 {
 .result {
   color: #fff;
 }
+.result h2 {
+  text-transform: capitalize;
+}
 .map {
   border-radius: 20px;
   min-height: 450px;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Data from '../Data/Data';
 import Map from '../Map/Map';
 
 const Destination = () => {
@@ -6,10 +7,14 @@ const Destination = () => {
 
     const [startPoint, setStartPoint] = useState('')
     const [endPoint, setEndPoint] = useState('')
+
+    // Handle Search Function
     const handleSearch = () => {
         console.log('searching result..')
         setResult(true)
     }
+
+    // Handle Input function
     const handleInput = (e) => {
         e.target.name === 'endPoint' ? setEndPoint(e.target.value) : setStartPoint(e.target.value)
     }
@@ -22,11 +27,10 @@ const Destination = () => {
                         <h2>Start Point: {startPoint}</h2>
                         <h2>End Point: {endPoint}</h2>
                         <h3>Price for this route-</h3>
-                        <p>One Time Ticket: $10</p>
-                        <p>One Day Pass: $40</p>
-                        <p>Monthly Pass: $1000</p>
-                        <p>Annual Pass: $10000</p>
-                        <button onClick={() => setResult(false)}>Search Again</button>
+                        {
+                            Data.map(ticket => <p key={ticket.id}>{ticket.type} : ${ticket.price}</p>)
+                        }
+                        <button onClick={() => setResult(false)}>Search Another Route</button>
                     </div>
                     :
                     <div>
