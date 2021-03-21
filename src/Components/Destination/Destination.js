@@ -10,8 +10,17 @@ const Destination = () => {
 
     // Handle Search Function
     const handleSearch = () => {
+        if (startPoint === '' || endPoint === '') {
+            return
+        }
         console.log('searching result..')
         setResult(true)
+    }
+    // Reset Search Function
+    const resetSearch = () => {
+        setStartPoint('')
+        setEndPoint('')
+        setResult(false)
     }
 
     // Handle Input function
@@ -30,7 +39,7 @@ const Destination = () => {
                         {
                             Data.map(ticket => <p key={ticket.id}>{ticket.type} : ${ticket.price}</p>)
                         }
-                        <button onClick={() => setResult(false)}>Search Another Route</button>
+                        <button onClick={resetSearch}>Search Another Route</button>
                     </div>
                     :
                     <div>
