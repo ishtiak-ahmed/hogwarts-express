@@ -12,6 +12,6 @@ I also added some Material UI icons in this project.
 - Responsive Layout
 - Material UI Icons
 
-[Hogwarts Express](https://raw.githubusercontent.com/ishtiak-ahmed/hogwarts-express/main/hogwarts.png)
+![Hogwarts Express](https://raw.githubusercontent.com/ishtiak-ahmed/hogwarts-express/main/hogwarts.png)
 
 Thank for visiting this!
